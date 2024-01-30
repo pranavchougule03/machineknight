@@ -92,5 +92,4 @@ def fields_info():
 
     return render_template('fields_info.html', field_info=field_info)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
