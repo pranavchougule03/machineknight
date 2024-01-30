@@ -1,0 +1,66 @@
+body {
+    font-family: 'Cabrion Bold', sans-serif;
+    color: black;
+    
+}
+
+.problem-s{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #96E9C6;
+}
+
+.upload-button{
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    border-radius: 60px;
+    color: #000000;
+    font-family: Brush Script MT;
+    font-size: 25px;
+    font-weight: 100;
+    padding: 10px;
+    background-color: #F9F9F9;
+    border: solid #DC84F3 4px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.upload-button:hover{
+    background: #DC84F3;
+    border: solid #fbfafc 3px;
+    -webkit-border-radius: 61px;
+    -moz-border-radius: 61px;
+    border-radius: 61px;
+    text-decoration: none;
+    color: white;
+}
+
+.input{
+    font-size: 18px;
+}
+
+.form{
+    margin-top: 8vh;
+    border: solid #DC84F3 2px;
+    border-radius: 61px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.card-footer{
+    background-color: white;
+}
+
+.content{
+    display: flex;
+    margin-top: 30vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+
