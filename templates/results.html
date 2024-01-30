@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            font-family: 'Cabrion Bold', sans-serif;
+            color: black;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .table-container {
+            margin-top: 20px;
+            max-width: 80%;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Results Page</h1>
+        <div class="table-container">
+            <!-- Display results in a table -->
+            {{ results_html | safe }}
+        </div>
+        <div>
+            <!-- Downloadable CSV link -->
+            <a href="data:text/csv;base64,{{ csv_data }}" download="results.csv" class="upload-button">Download Results CSV</a>
+        </div>
+    </div>
+</body>
+</html>

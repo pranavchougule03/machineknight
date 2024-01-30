@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="problem-s">
+    <br>
+    <h5>Problem Statement: Early Warning System for Dropout Prediction</h5>
+    <!-- <h6>Description: </h6> -->
+    <p>Create an Al model predicting the likelihood of a student dropping out based on factors such as attendance, grades, and engagement</p>
+</div>
+    <!-- <div class="form">
+        <div class="form-info">
+        <h5>Select a .csv file which contains Students Information</h5>
+    </div>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required class="input">
+        <button type="submit" class="upload-button">Upload</button>
+    </form> -->
+    <div class="card text-center form">
+        <div class="card-header">
+            <h5>Select a .csv which contains students Information.</h5>
+        </div>
+        <div class="card-body">
+          <h6 class="card-title">Make sure that the .csv file contains all the fields mentoined <a href="/fields_info">here.</a></h6>
+          <p class="card-text">We have provided sample data below.</p>
+
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required class="input">
+            <button type="submit" class="upload-button">Upload</button>
+
+        </form> 
+        </div>
+
+      </div>
+
+      <div class="card text-center form">
+        <div class="card-header">
+            <h5>Sample Data to check our model !</h5>
+        </div>
+        <div class="card-body">
+          <h6 class="card-title">It contains all the fields mentioned <a href="/fields_info">here.</a></h6>
+          <p class="card-text">Data of 20 Students is provided. You can Download it.</p>
+
+        </div>
+        <div class="card-footer text-muted">
+            <a href="/static/sample.csv" download="sample.csv" class="upload-button">Download</a>
+
+        </div>
+      </div>
+</div>
+</body>
+</html>
