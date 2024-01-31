@@ -6,7 +6,8 @@ model = pickle.load(open('rf_model.sav', 'rb'))
 
 def pred(df):
     responce = df['id']
-    x = df.iloc[:,1:].values
+    df = df.drop(['id'],axis=1)
+    x = df.iloc[:,:].values
     y = model.predict_proba(x)
     y1 = []
     for en in y[:,1]:
