@@ -6,7 +6,6 @@ import flsk
 
 app = Flask(__name__)
 
-# Set up a simple in-memory database to store uploaded data
 uploaded_data = None
 result_data = None
 @app.route('/')
@@ -20,19 +19,33 @@ def results():
     if uploaded_data is None:
         return 'No data uploaded. Please go to the home page to upload a CSV file.'
 
-    # Assuming the CSV file has columns 'Name', 'Roll Number', 'Grade'
-    # You can modify this based on your actual CSV file structure
-    columns = ['id', 'dropout_probability']
-    
-    # Display results
-    results_html = uploaded_data.to_html(classes='table table-striped', index=False)
+    low_risk_data = uploaded_data[uploaded_data['dropout_probability'] == 'low-risk']
+    neutral_data = uploaded_data[uploaded_data['dropout_probability'] == 'neutral']
+    high_risk_data = uploaded_data[uploaded_data['dropout_probability'] == 'high-risk']
 
-    # Generate downloadable CSV file
-    csv_output = BytesIO()
-    uploaded_data.to_csv(csv_output, index=False)
-    csv_output.seek(0)
+    low_risk_html = low_risk_data.to_html(classes='table table-striped', index=False)
+    neutral_html = neutral_data.to_html(classes='table table-striped', index=False)
+    high_risk_html = high_risk_data.to_html(classes='table table-striped', index=False)
 
-    return render_template('results.html', results_html=results_html, columns=columns, csv_data=base64.b64encode(csv_output.read()).decode('utf-8'))
+    low_risk_csv = BytesIO()
+    low_risk_data.to_csv(low_risk_csv, index=False)
+    low_risk_csv.seek(0)
+
+    neutral_csv = BytesIO()
+    neutral_data.to_csv(neutral_csv, index=False)
+    neutral_csv.seek(0)
+
+    high_risk_csv = BytesIO()
+    high_risk_data.to_csv(high_risk_csv, index=False)
+    high_risk_csv.seek(0)
+
+    return render_template('results.html', 
+                           low_risk_html=low_risk_html, 
+                           neutral_html=neutral_html, 
+                           high_risk_html=high_risk_html,
+                           low_risk_csv=base64.b64encode(low_risk_csv.read()).decode('utf-8'),
+                           neutral_csv=base64.b64encode(neutral_csv.read()).decode('utf-8'),
+                           high_risk_csv=base64.b64encode(high_risk_csv.read()).decode('utf-8'))
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -40,15 +53,12 @@ def upload():
 
     file = request.files['file']
     if file and file.filename.endswith('.csv'):
-        # Read CSV file into a Pandas DataFrame
         uploaded_data = pd.read_csv(file,sep=';')
-        # uploaded_data['id'] = range(1, len(uploaded_data) + 1)
     uploaded_data = flsk.pred(uploaded_data)
     return render_template('File_uploaded.html')
 
 @app.route('/fields_info')
 def fields_info():
-    # Define a dictionary with updated field names
     field_info = {
         'id':'Roll no of student',
         'Marital Status': 'Whether the student is married or not',
@@ -87,9 +97,12 @@ def fields_info():
         'Unemployment rate': 'Unemployment rate',
         'Inflation rate': 'Inflation rate',
         'GDP': 'Gross Domestic Product',
-        # Add more fields as needed
     }
 
     return render_template('fields_info.html', field_info=field_info)
 
-
+if __name__ == '__main__':
+ 
+    # run() method of Flask class runs the application 
+    # on the local development server.
+    app.run()

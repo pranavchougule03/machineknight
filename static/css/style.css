@@ -26,6 +26,7 @@ body {
     display: inline-block;
     cursor: pointer;
     text-align: center;
+    margin-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -63,4 +64,13 @@ body {
     align-items: center;
 }
 
+.note{
+    display: flex;
+    margin-top: 60px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    height: 70px;
+    background-color: rgb(224, 58, 58);
+}
 

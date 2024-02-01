@@ -20,16 +20,22 @@
             height: 100vh;
         }
         .table-container {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
             max-width: 80%;
             overflow-x: auto;
             margin-bottom: 20px;
         }
-        table {
+        .table-wrapper {
+            flex: 1;
+            margin: 0 25px; 
+        }
+        .table-wrapper table {
             border-collapse: collapse;
             width: 100%;
         }
-        th, td {
+        .table-wrapper th, .table-wrapper td {
             border: 1px solid black;
             padding: 8px;
             text-align: left;
@@ -40,12 +46,27 @@
     <div class="container">
         <h1>Results Page</h1>
         <div class="table-container">
-            <!-- Display results in a table -->
-            {{ results_html | safe }}
-        </div>
-        <div>
-            <!-- Downloadable CSV link -->
-            <a href="data:text/csv;base64,{{ csv_data }}" download="results.csv" class="upload-button">Download Results CSV</a>
+            <div class="table-wrapper">
+                <h2>High-Risk</h2>
+                {{ high_risk_html | safe }}
+                <div>
+                    <a href="data:text/csv;base64,{{ high_risk_csv }}" download="high_risk_results.csv" class="upload-button">Download</a>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <h2>Neutral</h2>
+                {{ neutral_html | safe }}
+                <div>
+                    <a href="data:text/csv;base64,{{ neutral_csv }}" download="neutral_results.csv" class="upload-button">Download</a>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <h2>Low-Risk</h2>
+                {{ low_risk_html | safe }}
+                <div>
+                    <a href="data:text/csv;base64,{{ low_risk_csv }}" download="low_risk_results.csv" class="upload-button">Download</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
