@@ -5,13 +5,12 @@ import pickle
 model = pickle.load(open('rf_model.sav', 'rb'))
 
 def pred(df):
-    responce = df['id']
-    df = df.drop(['id'],axis=1)
+    responce = df[['id','Name']]
+    df = df.drop(['id','Name'],axis=1)
     x = df.iloc[:,:].values
     y = model.predict_proba(x)
     y1 = []
     for en in y[:,1]:
-        print(en)
         if en < 0.45 :
             y1.append('low-risk')
         elif en > 0.55:
